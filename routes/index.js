@@ -1,5 +1,9 @@
 // Modular Router import
 
-const route = require('express').Router();
+const router = require('express').Router();
 
 const routerNotes = require('./routeNotes');
+
+router.use('/routeNotes', routerNotes);
+
+module.exports = router;
