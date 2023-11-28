@@ -7,3 +7,9 @@ const {
     readAndAppend,
     writeToFile,
 } = require('../helpers/fsUtils');
+
+// Route to get all of the notes
+
+notes.get('/', (req, res) => {
+    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+});
