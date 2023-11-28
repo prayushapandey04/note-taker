@@ -10,7 +10,7 @@ const {
 
 // GET route to get all of the notes
 
-notes.get('/', (req, res) => {
+notes.get('/', (_, res) => {
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
