@@ -29,6 +29,19 @@ app.get('/', (req, res) => {
 app.get('/notes', (req, res) => {
 
     res.sendFile(path.join(__dirname, './public/notes.html'))
-    
+
 });
 
+// Wildcard route for user be routed to homepage
+
+app.get('*', (req, res) => {
+
+    res.sendFile(path.join(__dirname, './public/index.html'))
+
+});
+
+app.listen(PORT, () => {
+
+    console.log(`Server is listening to app on port ${PORT}`);
+    
+});
