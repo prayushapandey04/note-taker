@@ -28,3 +28,22 @@ notes.post('/', (req, res) => {
     readAndAppend(addNewNote, './db/db.json');
     res.json('Your new note has been added successfully!');
 });
+
+
+// Delete route to delete a note
+
+notes.delete('/:id', (req, res) => {
+
+    const noteId = req.params.id;
+    readFromFile('./db/db.json')
+        .then((data) => JSON.parse(data))
+        .then((json) => {
+            const result = json.filter((note) => note.id !== noteId);
+
+            writeToFile('./db/db.json', result);
+
+            res.json(`Item ${noteId} has been deleted!`);
+        });
+});
+
+module.exports = notes;
