@@ -18,7 +18,7 @@ app.use(express.static('public'));
 
 // Homepage GET route 
 
-app.get('/', (req, res) => {
+app.get('/', (_, res) => {
 
     res.sendFile(path.join(__dirname, './public/index.html'))
 
@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 
 // Notes page GET route
 
-app.get('/notes', (req, res) => {
+app.get('/notes', (_, res) => {
 
     res.sendFile(path.join(__dirname, './public/notes.html'))
 
@@ -34,7 +34,7 @@ app.get('/notes', (req, res) => {
 
 // Wildcard route for user be routed to homepage
 
-app.get('*', (req, res) => {
+app.get('*', (_, res) => {
 
     res.sendFile(path.join(__dirname, './public/index.html'))
 
@@ -43,5 +43,5 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
 
     console.log(`Server is listening to app on port ${PORT}`);
-    
+
 });
