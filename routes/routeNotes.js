@@ -14,18 +14,32 @@ notes.get('/', (_, res) => {
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
+// Getting one note
+
+notes.get('/:id', (req, res) => {
+    const noteId = req.params.id;
+    readFromFile('./db/db.json')
+      .then((data) => JSON.parse(data))
+      .then((json) => {
+        const result = json.filter((note) => note.id === noteId);
+        return result.length >0
+        ? res.json(result)
+        : res.json('No note with that ID');
+      });
+})
+;
 // POST route for adding a new note
 
 notes.post('/', (req, res) => {
     
     const { title, text } = req.body;
-    const addNewNote = {
+    const newNote = {
         title,
         text,
         id: uuidv4(),
     };
 
-    readAndAppend(addNewNote, './db/db.json');
+    readAndAppend(newNote, './db/db.json');
     res.json('Your new note has been added successfully!');
 });
 
